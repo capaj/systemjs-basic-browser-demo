@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+	<h2>system.js simplest demo</h2>
+	<ul id="out"></ul>
+</body>
+<script src="jspm_packages/system.js"></script>
+<script src="config.js"></script>
+<script>
+	var print = function(text) {
+		console.log(text);
+		out.innerHTML += '<li>' + new Date().getTime() + ' ' + text + '<br></li>';
+	};
+	System.import('main-es6')
+			.catch(function(e) {
+				setTimeout(function() {
+					throw e;
+				});
+			});
+	System.import('main-cjs');		//not that this is "compiled" sooner than es6 even though it is called second
+
+</script>
+</html>
